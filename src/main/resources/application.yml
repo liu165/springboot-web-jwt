@@ -1,0 +1,41 @@
+
+spring:
+
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/shiro?useSSL=false&&serverTimezone=GMT
+      #解决乱码的问题
+      driver-class-name: com.mysql.jdbc.Driver
+      password: root
+      username: root
+  thymeleaf:
+    cache: false #关闭缓存
+    prefix: classpath:/views/ #添加路径前缀
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰表示法
+#  mapper-locations: classpath:mapper/*.xml
+com:
+  hehe:
+    druid:
+      # druid访问用户名（默认：zyd-druid）
+      username: liukai
+      # druid访问密码（默认：zyd-druid）
+      password: liukai
+      # druid访问地址（默认：/druid/*）
+      servletPath: /druid/*
+      # 启用重置功能（默认false）
+      resetEnable: false
+      # 白名单(非必填)， list
+      allowIps[0]:
+      # 黑名单(非必填)， list
+      denyIps[0]:
+# 加密yan
+jwt:
+  secret: A0B1C2D3E4F5G6H7I8J9KALBMCNDOEPFQ0R1S2T3U4V5W6X7Y8Z9
+    # tocken 过期时间，单位秒 设置两分钟过期
+  expire: 120
+    # 需要认证的url，多个URL使用英文逗号,分割
+  authorised-urls: /apis/*
+

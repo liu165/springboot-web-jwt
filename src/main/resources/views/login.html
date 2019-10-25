@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>用户登入test</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script th:src="@{js/commom.js}"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/my-login.css}">
+</head>
+
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="img/logo.ico" alt="logo">
+					</div>
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">用户登入</h4>
+							<form method="POST" class="my-login-validation" novalidate="">
+								<div class="form-group">
+									<label for="email">用户名</label>
+									<input id="username" type="email" class="form-control" name="email" value="" required autofocus>
+
+								</div>
+
+								<div class="form-group">
+									<label for="password">Password
+										<a href="forgot.html" class="float-right">
+											忘记密码
+										</a>
+									</label>
+									<input id="password" type="password" class="form-control" name="password" required data-eye>
+								    <div class="invalid-feedback">
+								    	Password is required
+							    	</div>
+								</div>
+
+								<div class="form-group">
+									<div class="custom-checkbox custom-control">
+										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
+										<label for="remember" class="custom-control-label">记住密码</label>
+									</div>
+                                    <div  id="invalid-feedback" class="invalid-feedback">
+                                        用户名或密码不正确
+                                    </div>
+								</div>
+
+								<div class="form-group m-0">
+
+										<a class="btn btn-primary btn-block" id ="go">登入</a>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2019 &mdash;hncg
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+<!--	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+    <script>
+
+
+
+        $("#invalid-feedback").hide();
+        $("#go").click(function(){
+            $.ajax({
+                type :"post",
+                url :"http://localhost:8080/login",
+                data : {
+                    "username":$("#username").val(),
+                    "password":$("#password").val()
+                },
+                success : function(result){
+                    if (result.msg=="ok"){
+                        var Days = 1; //此 cookie 多少分钟
+                        var exp = new Date();
+                        exp.setTime(exp.getTime() + Days*60 * 1000);
+                        document.cookie = "my_token =" + escape(result.token) + ";expires=" + exp.toGMTString();
+                        token=result.token
+                        alert(result.token)
+
+                    }else{
+                        $("#invalid-feedback").show();
+                        alert("登入失败，请重新登入")
+                    }
+
+                },
+                error : function(xhr, status, statusText) {
+                    console.error(xhr)
+
+                }
+            })
+        })
+        $("#register").click(function() {
+            $.ajax({
+                type :"post",
+                url : "http://localhost:8080/regist",
+                data:{
+                    "username":$("#username").val(),
+                    "password":$("#password").val()
+                },
+                success : function(result){
+                    if (result.msg=="ok"){
+                        alert("注册成功")
+                    }else{
+                        alert("注册失败，请重新注册")
+                    }
+
+                },
+                error : function(xhr, status, statusText) {
+                    coconsole.log(status +":"+statusText)
+                }
+            })
+        });
+    </script>
+</body>
+</html>

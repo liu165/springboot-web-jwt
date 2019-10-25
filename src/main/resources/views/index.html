@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{js/commom.js}"></script>
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<head>
+<style>
+</style>
+</head>
+<body>
+<div >
+    <form id="test">
+        <div  >
+        登入<input placehoder="用户名" type="text" id="username" >
+        </div>
+        <div class="">
+        密码<input placehoder="密码" type="password" class="input" id="password">
+        </div>
+        <div class="">
+        <a id="go" class="">登入</a>
+        </div>
+
+        <div class="">
+            <a id="register" class="">注册</a>
+        </div>
+    </form>
+</div>
+<script>
+    var getCookie = function (name) {
+        var arr;
+        var reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    };
+
+    $.ajax({
+        type :"post",
+        url :"http://localhost:8080/apis/test",
+        headers:{
+            token:getCookie('my_token')
+        },
+        data : {
+
+        },
+
+        success : function(result){
+            if (result.msg=="ok"){
+                alert("登入成功")
+            }else{
+                alert("登入失败，请重新登入")
+            }
+
+        },
+        error : function(xhr, status, statusText) {
+            coconsole.log(status +":"+statusText)
+        }
+    })
+    $("#go").click(function(){
+        alert("点击了")
+        $.ajax({
+            type :"post",
+            url :"http://localhost:8080/login",
+            data : {
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            },
+            success : function(result){
+                if (result.msg=="ok"){
+                    alert("登入成功")
+                }else{
+                    alert("登入失败，请重新登入")
+                }
+
+            },
+            error : function(xhr, status, statusText) {
+                coconsole.log(status +":"+statusText)
+            }
+        })
+    })
+    $("#register").click(function() {
+        $.ajax({
+            type :"post",
+            url : "http://localhost:8080/regist",
+            data:{
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            },
+            success : function(result){
+                if (result.msg=="ok"){
+                    alert("注册成功")
+                }else{
+                    alert("注册失败，请重新注册")
+                }
+
+            },
+            error : function(xhr, status, statusText) {
+                coconsole.log(status +":"+statusText)
+            }
+        })
+    });
+</script>
+</body>
+</html>
