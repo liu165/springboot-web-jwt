@@ -1,7 +1,7 @@
 package com.hehe.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hehe.config.JwtHelper;
+
 import com.hehe.config.TokenProvider;
 import com.hehe.entity.JwtConfig;
 import com.hehe.entity.R;

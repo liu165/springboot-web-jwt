@@ -3,7 +3,7 @@ package com.hehe.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hehe.config.JwtHelper;
+
 import com.hehe.config.TokenProvider;
 import com.hehe.interceptor.JwtFilter;
 import org.springframework.beans.factory.annotation.Value;

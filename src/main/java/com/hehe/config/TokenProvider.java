@@ -26,9 +26,10 @@ public class TokenProvider implements InitializingBean {
 
    private final String Secret;
    private final long tokenValidityInMilliseconds;
-//   private final long tokenValidityInMillisecondsForRememberMe;
 
-   private Key key;
+
+
+
 
 
    public TokenProvider(
@@ -46,6 +47,13 @@ public class TokenProvider implements InitializingBean {
 
    }
 
+    /**
+     *
+     *  生成token
+     * @param claims 传入的map
+     * @param rememberMe
+     * @return
+     */
    public String createToken(HashMap<String, Object> claims, boolean rememberMe) {
 
       long now = (new Date()).getTime();
