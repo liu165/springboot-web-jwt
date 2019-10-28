@@ -110,8 +110,10 @@ public class UserController {
     @RequestMapping("/apis/test")
     public R api(){
         R r = new R();
-        r.setMsg(R.failed_state);
-        r.setData(null);
+        r.setMsg(R.success_state);
+        List <String> list = new ArrayList<> ();
+        list.add("接口测试成功");
+        r.setData(list);
         return r;
     }
 

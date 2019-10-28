@@ -92,7 +92,7 @@
                         exp.setTime(exp.getTime() + Days*60 * 1000);
                         document.cookie = "my_token =" + escape(result.token) + ";expires=" + exp.toGMTString();
                         token=result.token
-                        alert(result.token)
+                        location.href="http://localhost:8080/to";
 
                     }else{
                         $("#invalid-feedback").show();
