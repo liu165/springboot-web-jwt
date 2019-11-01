@@ -73,7 +73,7 @@ public class TokenProvider implements InitializingBean {
 
 
     /**
-     * 验证token，传入token验证是否合法
+     * 验证token，传入token验证是否合法，这里使用token来进行验证
      * @param authToken
      * @return
      */
