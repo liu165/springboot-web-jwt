@@ -35,7 +35,7 @@ com:
 jwt:
   secret: A0B1C2D3E4F5G6H7I8J9KALBMCNDOEPFQ0R1S2T3U4V5W6X7Y8Z9
     # tocken 过期时间，单位秒 设置两分钟过期
-  expire: 120
+  expire: 40
     # 需要认证的url，多个URL使用英文逗号,分割
   authorised-urls: /apis/*
 

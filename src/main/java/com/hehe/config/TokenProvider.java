@@ -38,6 +38,7 @@ public class TokenProvider implements InitializingBean {
    ) {
        //   @Value("${jwt.token-validity-in-seconds-for-remember-me}") long tokenValidityInSecondsForRememberMe
       this.Secret = Secret;
+      //设置多少秒后过期
       this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
 //      this.tokenValidityInMillisecondsForRememberMe = tokenValidityInSecondsForRememberMe * 1000;
    }
