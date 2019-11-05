@@ -58,7 +58,7 @@ public class JwtFilter implements Filter {
                         chain.doFilter(request, response);
                         return;
                     }else{
-                        //验证失败
+                        //验证失败 会生成401错误
                         httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "未授权或者授权已经过期");
                         return;
                     }
