@@ -33,6 +33,7 @@ public class TokenProvider implements InitializingBean {
 
 
    public TokenProvider(
+           //不能是静态变量
       @Value("${jwt.secret}") String Secret,
       @Value("${jwt.expire}") long tokenValidityInSeconds
    ) {
