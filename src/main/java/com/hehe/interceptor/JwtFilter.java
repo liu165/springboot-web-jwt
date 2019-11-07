@@ -60,7 +60,7 @@ public class JwtFilter implements Filter {
                     }else{
                         //验证失败 会生成401错误
                         httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "未授权或者授权已经过期");
-                        return;
+                        return;//s
                     }
                 }else{
                     //放行
