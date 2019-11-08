@@ -19,7 +19,7 @@ public class Runner implements ApplicationRunner {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        logger.info("");
+        logger.info("这里是启动后打印的东西：");
         System.out.println("项目成功启动 输入：http://localhost:8080/");
     }
 }
