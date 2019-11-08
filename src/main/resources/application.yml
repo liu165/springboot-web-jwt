@@ -4,7 +4,7 @@ spring:
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/shiro?useSSL=false&&serverTimezone=GMT
-      #解决乱码的问题
+      #解决乱码的问题，利用
       driver-class-name: com.mysql.jdbc.Driver
       password: root
       username: root

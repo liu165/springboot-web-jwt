@@ -38,6 +38,7 @@ public class JwtFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        //可以设置状态
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setCharacterEncoding("UTF-8");
         httpResponse.setContentType("application/json; charset=utf-8");
@@ -59,8 +60,8 @@ public class JwtFilter implements Filter {
                         return;
                     }else{
                         //验证失败 会生成401错误
-                        httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "未授权或者授权已经过期");
-                        return;//s
+                        httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "未授权或者授权已经过期");//设置未授权的状态
+                        return;//
                     }
                 }else{
                     //放行

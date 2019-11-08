@@ -43,7 +43,7 @@ public class UserController {
     public String userlist(Model model) {
         List<User> userList = new ArrayList<>();
         userList.add(new User(UUID.randomUUID().toString(), "yizhiwazi", "20170928"));
-        userList.add(new User(UUID.randomUUID().toString(), "kumamon", "模板渲染成功了"));
+        userList.add(new User(UUID.randomUUID().toString(), "kumamon", "模板渲染成功了"));//使用有关的教程
         userList.add(new User(UUID.randomUUID().toString(), "admin", "thymeleaf渲染的东西"));
         model.addAttribute("userList", userList);
         return "userList";
